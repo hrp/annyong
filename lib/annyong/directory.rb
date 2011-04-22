@@ -1,3 +1,7 @@
+require 'time'
+require 'rack/utils'
+require 'rack/mime'
+
 module Annyong
   class Directory < Rack::Directory
     DIR_FILE = "<tr><td class='name'><a href='%s'>%s</a></td><td class='size'>%s</td><td class='type'>%s</td><td class='mtime'>%s</td></tr>"
@@ -24,6 +28,11 @@ module Annyong
 </body></html>
     PAGE
 
+    def initialize(root, app=nil)
+      puts root
+      super(root, Annyong::FileHandler.new(root))
+    end
+
     def each
       show_path = @path.sub(/^#{@root}/,'')
       files = @files.map{|f| DIR_FILE % f }*"\n"
@@ -32,4 +41,8 @@ module Annyong
     end
 
   end
+
+
 end
+
+#  Rack::Mime::MIME_TYPES.merge!({".csv" => "text/plain"})
