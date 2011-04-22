@@ -1,6 +1,6 @@
 # Alert
 
-This is a fork to include a quick way to show csv files in formatted tables.
+This is a fork to include a quick way to show csv or tsv files in a formatted table with sorting provided by jQuery DataTables.
 
 # Introduction
 
